@@ -8,8 +8,10 @@ import { Product } from "@/types";
 
 export default async function CategoryPage({
   params,
+  searchParams,
 }: {
   params: { categoryId: string };
+  searchParams: Record<string, unknown>;
 }) {
   const { categoryId } = params;
   const [products, category] = await Promise.all([
