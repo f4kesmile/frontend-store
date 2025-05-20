@@ -6,17 +6,16 @@ import ProductCard from "@/components/ui/product-card";
 import NoResult from "@/components/ui/no-result";
 import { Product } from "@/types";
 
-export default async function CategoryPage({
-  params,
-  searchParams,
-}: {
-  params: { categoryId: string };
-  searchParams: Record<string, unknown>;
-}) {
-  const { categoryId } = params;
+interface CategoryPageProps {
+  params: {
+    categoryId: string;
+  };
+}
+
+const CategoryPage: React.FC<CategoryPageProps> = async ({ params }) => {
   const [products, category] = await Promise.all([
-    getProducts({ categoryId }),
-    getCategory(categoryId),
+    getProducts({ categoryId: params.categoryId }),
+    getCategory(params.categoryId),
   ]);
 
   return (
@@ -39,4 +38,6 @@ export default async function CategoryPage({
       </Container>
     </div>
   );
-}
+};
+
+export default CategoryPage;
