@@ -13,9 +13,10 @@ interface CategoryPageProps {
 }
 
 const CategoryPage: React.FC<CategoryPageProps> = async ({ params }) => {
+  const awaitedParams = await params;
   const [products, category] = await Promise.all([
-    getProducts({ categoryId: params.categoryId }),
-    getCategory(params.categoryId),
+    getProducts({ categoryId: awaitedParams.categoryId }),
+    getCategory(awaitedParams.categoryId),
   ]);
 
   return (
