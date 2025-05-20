@@ -6,13 +6,11 @@ import ProductCard from "@/components/ui/product-card";
 import NoResult from "@/components/ui/no-result";
 import { Product } from "@/types";
 
-interface CategoryPageProps {
-  params: {
-    categoryId: string;
-  };
-}
-
-export default async function CategoryPage({ params }: CategoryPageProps) {
+export default async function CategoryPage({
+  params,
+}: {
+  params: { categoryId: string };
+}) {
   const { categoryId } = params;
   const [products, category] = await Promise.all([
     getProducts({ categoryId }),
