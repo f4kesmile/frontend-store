@@ -2,10 +2,11 @@
 
 import { Product } from "@/types";
 import Currency from "@/components/ui/currency";
-import Button from "@/components/ui/button";
+
 import { MessageCircleIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Button from "./ui/button";
 
 interface InfoProps {
   data: Product;
@@ -15,10 +16,18 @@ const Info: React.FC<InfoProps> = ({ data }) => {
   const [linkWa, setLinkWa] = useState("");
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && data?.price) {
       const URL = `${window.location.origin}/product/${data.id}`;
       const nomorTelepon = process.env.NEXT_PUBLIC_TELP;
-      const pesan = `Halo saya ingin membeli ${data.name} - ${data.price} dengan link: ${URL}`;
+
+      // Format harga ke dalam Rupiah
+      const formattedPrice = new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+        minimumFractionDigits: 0, // Menghindari .00 di akhir angka
+      }).format(Number(data.price));
+
+      const pesan = `Halo saya ingin membeli ${data.name} - ${formattedPrice} dengan link : ${URL}`;
       const linkWhatsApp = `https://wa.me/${nomorTelepon}?text=${encodeURIComponent(
         pesan
       )}`;
