@@ -2,7 +2,7 @@
 
 import { Product } from "@/types";
 import Currency from "@/components/ui/currency";
-import { Button } from "./ui/button";
+import Button from "@/components/ui/button";
 import { MessageCircleIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -19,7 +19,9 @@ const Info: React.FC<InfoProps> = ({ data }) => {
       const URL = `${window.location.origin}/product/${data.id}`;
       const nomorTelepon = process.env.NEXT_PUBLIC_TELP;
       const pesan = `Halo saya ingin membeli ${data.name} - ${data.price} dengan link: ${URL}`;
-      const linkWhatsApp = `https://wa.me/${nomorTelepon}?text=${encodeURIComponent(pesan)}`;
+      const linkWhatsApp = `https://wa.me/${nomorTelepon}?text=${encodeURIComponent(
+        pesan
+      )}`;
       setLinkWa(linkWhatsApp);
     }
   }, [data]);

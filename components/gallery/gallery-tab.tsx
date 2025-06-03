@@ -13,12 +13,7 @@ const GalleryTab: React.FC<GalleryTabProps> = ({ image }) => {
       {({ selected }) => (
         <div className="relative w-full h-full">
           <span className="absolute inset-0 overflow-hidden rounded-md">
-            <Image
-              fill
-              src={image.url}
-              alt=""
-              className="object-cover"
-            />
+            <Image fill src={image.url} alt="" className="object-cover" />
           </span>
           <span
             className={cn(
